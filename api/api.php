@@ -10,18 +10,6 @@ error_reporting(0);
 date_default_timezone_set('America/Mexico_City'); //Ajustando zona horaria
 
 
-function conectarInfoweb(){
-
-    $dbhost="www.medicavial.com.mx";
-    $dbuser="medica_sistemas";
-    $dbpass="sistemas";
-    $dbname="medica_infowebING";
-    $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $conn;
-}
-
-
 function ultimodiadelmes($mes) { 
       $month = date($mes);
       $year = date('Y');
@@ -52,8 +40,28 @@ function conectarMySQL(){
 //la URL de la siguiente forma api/api.php?funcion=login
 
 $funcion = $_REQUEST['funcion'];
-$cliente = $_REQUEST['cliente'];
 
+
+
+if ($funcion == 'temporal') {
+    //Obtenemos la imagen que mandamos de angular
+      if(isset($_FILES['file'])){
+          //The error validation could be done on the javascript client side.       
+          $file_name = $_FILES['file']['name'];
+          $file_size =$_FILES['file']['size'];
+          $file_tmp =$_FILES['file']['tmp_name'];
+          $file_type=$_FILES['file']['type'];   
+          $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+          move_uploaded_file($file_tmp,"../img/temp/".$file_name);
+          $resultado = array('ubicacion' => "img/temp/".$file_name, 'temporal' => $file_tmp);
+
+          echo json_encode($resultado);
+
+          
+      }
+
+}
 
 if($funcion == 'login'){
     
@@ -69,7 +77,7 @@ if($funcion == 'login'){
     $psw = trim($data->psw);
     
     $sql = "SELECT * FROM Usuario
-            WHERE USU_login = '$user' and USU_password = '" . md5($psw) . "'";
+            WHERE Usu_login = '$user' and Usu_pwd = '" . md5($psw) . "'";
 
     $result = $conexion->query($sql);
     $numero = $result->rowCount();
@@ -211,7 +219,7 @@ if($funcion == 'usuarios'){
 
     $conexion = conectarMySQL();
 
-    $sql = "SELECT * FROM UsuarioInfoWeb";
+    $sql = "SELECT * FROM Usuario";
 
     $result = $conexion->query($sql);
 

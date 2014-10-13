@@ -1,5 +1,5 @@
 //inicializamos la aplicacion
-var app = angular.module('app', ['ui.bootstrap', 'ngCookies','ngRoute','ngAnimate']);
+var app = angular.module('app', ['ui.bootstrap', 'ngCookies','ngRoute','ngAnimate','angularFileUpload']);
 
 //configuramos nuestra aplicacion
 app.config(function($routeProvider){
@@ -22,50 +22,6 @@ app.config(function($routeProvider){
 
 //sirve para ejecutar cualquier cosa cuando inicia la aplicacion
 app.run(function ($rootScope ,$cookies, $cookieStore, sesion, $location){
-
-    
-    $rootScope.admin = true;
-    $rootScope.cerrar = false;
-
-
-    //verifica el tamaño de la pantalle y oculta o muestra el menu
-    var mobileView = 992;
-
-    $rootScope.getWidth = function() { return window.innerWidth; };
-
-    $rootScope.$watch($rootScope.getWidth, function(newValue, oldValue)
-    {
-        if(newValue >= mobileView)
-        {
-            if(angular.isDefined($cookieStore.get('toggle')))
-            {
-                if($cookieStore.get('toggle') == false)
-                    $rootScope.toggle = false;
-
-                else
-                    $rootScope.toggle = true;
-            }
-            else 
-            {
-                $rootScope.toggle = true;
-            }
-        }
-        else
-        {
-            $rootScope.toggle = false;
-        }
-
-    });
-
-    $rootScope.toggleSidebar = function() 
-    {
-        $rootScope.toggle = ! $rootScope.toggle;
-
-        $cookieStore.put('toggle', $rootScope.toggle);
-    };
-
-    window.onresize = function() { $rootScope.$apply(); };
-
 
     //evento que verifica cuando alguien cambia de ruta
     $rootScope.$on('$routeChangeStart', function(){
@@ -96,9 +52,27 @@ app.factory("sesion", function($cookies,$cookieStore,$location, $rootScope, $htt
     return{
         login : function(username, password)
         {   
-            $rootScope.username = username;
-            $cookies.username = username;
-            $location.path("/home");
+            $http({
+                url:'api/api.php?funcion=login',
+                method:'POST', 
+                contentType: 'application/json', 
+                dataType: "json", 
+                data:{user:username,psw:password}
+            }).success( function (data){
+
+                if (data.respuesta) {
+                    $rootScope.mensaje = data.respuesta;
+                }else{
+
+                    $rootScope.username = data[0].Usu_nombre;
+                    $cookies.username = data[0].Usu_nombre;
+                    $location.path("/home");
+                    //console.log(data);
+                }
+            });
+
+
+
         },
         logout : function()
         {
@@ -133,31 +107,4 @@ app.factory("busquedas", function($http, $rootScope){
     return{
     }
 });
-
-
-///notas 
-
-
-
-//definicion de factoria en angular
-// app.factory('nombredefactoria',function($http,$rootScope){
-//     return{
-//         query:function(parametros){
-//             //cualquier cosa
-//         },
-//         alta:function(){
-//             //cualquier cosa
-//         }
-//     }
-// })
-
-
-///funciones en algular
-// $rootScope.nombrefuncion = function(parametros){}
-// $scope.nombrefuncion = function(){}
-
-// //llamada desde html
-// <button ng-click="nombrefuncion()">
-// //llamada desde js
-// $scope.nombrefuncion();
 

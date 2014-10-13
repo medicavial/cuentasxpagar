@@ -63,6 +63,18 @@ h1{
 
 }
 
+.caja{
+
+	height: 100px;
+	width: 100px;
+	border: 2px dotted black;
+}
+
+.drag{
+	
+	border: 2px dotted red;
+}
+
 .loginheader{
 
 	background: #005FAB;
