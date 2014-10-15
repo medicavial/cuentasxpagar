@@ -23,7 +23,7 @@ h1{
 .tn-box {
     width: 360px;
     position: fixed;
-    	right: 0;
+    	right: 10px;
     	top: 60px;
     margin: 0 auto 20px auto;
     padding: 25px 15px;

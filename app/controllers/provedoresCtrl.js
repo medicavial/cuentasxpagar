@@ -4,14 +4,35 @@ app.controller('provedorCtrl', function($scope, $rootScope) {
 
         $rootScope.guardado = false;
         $rootScope.cerrar = true;
+
+        $scope.datos = {
+            tipo:'',
+            persona:'Moral',
+            nombre:'',
+            nombrecorto:'',
+            rfc:'',
+            correo:'',
+            credito:'',
+            observaciones:'',
+            banco:'',
+            beneficiario:'',
+            sucursal:'',
+            cuenta:'',
+            clabe:'',
+            cie:'',
+            observacionesbanco:''
+        }
     }
 
-    angular.element('#rfc')
+    angular.element('#rfc').on('keydown',function(e){
+        console.log(e.keycode);
+    });
 
     $scope.guardar = function(){
 
         $rootScope.guardado = true;
         $rootScope.cerrar = false;
+        console.log($scope.datos);
     }
 
 });

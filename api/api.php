@@ -30,7 +30,7 @@ function conectarMySQL(){
     $dbhost="localhost";
     $dbuser="medica_webusr";
     $dbpass="tosnav50";
-    $dbname="medica_registromv";
+    $dbname="medica_cuentasxpagar";
     $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $conn;
@@ -77,7 +77,7 @@ if($funcion == 'login'){
     $psw = trim($data->psw);
     
     $sql = "SELECT * FROM Usuario
-            WHERE Usu_login = '$user' and Usu_pwd = '" . md5($psw) . "'";
+            WHERE USU_login = '$user' and USU_password = '" . md5($psw) . "'";
 
     $result = $conexion->query($sql);
     $numero = $result->rowCount();
@@ -100,6 +100,40 @@ if($funcion == 'login'){
 if($funcion == 'buscaExpedientes'){
     
    
+}
+
+
+if($funcion == 'tipoProvedor'){
+
+    $conexion = conectarMySQL();
+
+    $sql = "SELECT * FROM TipoProvedor";
+
+    $result = $conexion->query($sql);
+
+    $datos = $result->fetchAll(PDO::FETCH_OBJ);
+    
+    echo json_encode($datos);
+
+    $conexion = null;
+
+}
+
+
+if($funcion == 'bancos'){
+
+    $conexion = conectarMySQL();
+
+    $sql = "SELECT * FROM Bancos";
+
+    $result = $conexion->query($sql);
+
+    $datos = $result->fetchAll(PDO::FETCH_OBJ);
+    
+    echo json_encode($datos);
+
+    $conexion = null;
+
 }
 
 
@@ -215,21 +249,7 @@ if($funcion == 'usuario'){
 }
 
 
-if($funcion == 'usuarios'){
 
-    $conexion = conectarMySQL();
-
-    $sql = "SELECT * FROM Usuario";
-
-    $result = $conexion->query($sql);
-
-    $datos = $result->fetchAll(PDO::FETCH_OBJ);
-    
-    echo json_encode($datos);
-
-    $conexion = null;
-
-}
 
 
 ?>

@@ -6,8 +6,8 @@
             <div class="widget-body">
 				<div class="row">
 					<div class="col-sm-3 col-md-3">
-						<label for="archivos">Tipo</label>
-            			<select class="form-control" id="area" ng-model="areaOp" ng-options="area.calve as area.nombre for area in areas" ng-change="altausuariosarea(areaOp)" required>
+						<label for="tipo">Tipo</label>
+            			<select class="form-control" id="tipo" ng-model="datos.tipo" ng-options="area.calve as area.nombre for area in areas" required>
 							<option value="">Tipo Provedor</option>
 						</select>
 					</div>
@@ -15,40 +15,40 @@
 						<label for="archivos">Persona </label>
 						<br>
 						<label class="radio-inline">
-						  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" ng-model="datos.persona"> Fisica
+						  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Fisica" ng-model="datos.persona"> Fisica
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" ng-model="datos.persona"> Moral
+						  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Moral" ng-model="datos.persona"> Moral
 						</label>
 					</div>
 					<div class="col-sm-6 col-md-7">
-						<label for="archivos">Nombre</label>
-            			<input type="text" id="archivos" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+						<label for="nombre">Nombre</label>
+            			<input type="text" id="nombre" class="form-control"  ng-model="datos.nombre"  mayusculas/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-3 col-md-3">
 						<label for="archivos">Nombre Corto</label>
-            			<input type="text" id="archivos" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+            			<input type="text" id="archivos" class="form-control"  ng-model="datos.nombrecorto"  mayusculas/>
 					</div>
 					<div class="col-sm-3 col-md-3">
 						<label for="rfc">RFC</label>
-            			<input type="text" id="rfc" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+            			<input type="text" id="rfc" class="form-control"  ng-model="datos.rfc"  mayusculas/>
 					</div>
 					<div class="col-sm-3 col-md-3">
 						<label for="archivos">Correo</label>
-            			<input type="text" id="archivos" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+            			<input type="email" id="archivos" class="form-control"  ng-model="datos.correo"  mayusculas/>
 					</div>
 					<div class="col-sm-3 col-md-3">
 						<label for="archivos">Crédito(dias)</label>
-            			<input type="text" id="archivos" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+            			<input type="text" id="archivos" class="form-control"  ng-model="datos.credito"  mayusculas/>
 					</div>
 
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<label for="observaciones">Observaciones</label>
-            			<textarea class="form-control" ng-model="observaciones" rows="3" mayusculas></textarea>
+            			<textarea class="form-control" ng-model="datos.observaciones" rows="3" mayusculas></textarea>
 					</div>
 				</div>
 				<fieldset>
@@ -57,38 +57,38 @@
 				<div class="row">
 					<div class="col-sm-4 col-md-3">
 						<label for="archivos">Banco</label>
-            			<select class="form-control" id="area" ng-model="areaOp" ng-options="area.calve as area.nombre for area in areas" ng-change="altausuariosarea(areaOp)" required>
+            			<select class="form-control" id="area" ng-model="datos.banco" ng-options="area.calve as area.nombre for area in areas" ng-change="altausuariosarea(areaOp)" required>
 							<option value="">Selecciona banco</option>
 						</select>
 					</div>
 					<div class="col-sm-8 col-md-6">
 						<label for="beneficiario">Beneficiario</label>
-            			<input type="text" id="beneficiario" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+            			<input type="text" id="beneficiario" class="form-control"  ng-model="datos.beneficiario"  mayusculas/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-3 col-md-3">
 						<label for="sucursal">Sucursal</label>
-            			<input type="text" id="sucursal" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+            			<input type="text" id="sucursal" class="form-control"  ng-model="datos.sucursal"  mayusculas/>
 					</div>
 					<div class="col-sm-3 col-md-3">
 						<label for="cuenta">Cuenta</label>
-            			<input type="text" id="cuenta" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+            			<input type="text" id="cuenta" class="form-control"  ng-model="datos.cuenta"  mayusculas/>
 					</div>
 					<div class="col-sm-3 col-md-3">
 						<label for="clabe">CLABE</label>
-            			<input type="text" id="clabe" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+            			<input type="text" id="clabe" class="form-control"  ng-model="datos.clabe"  mayusculas/>
 					</div>
 					<div class="col-sm-3 col-md-3">
 						<label for="convenio">Convenio CIE</label>
-            			<input type="text" id="convenio" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+            			<input type="text" id="convenio" class="form-control"  ng-model="datos.cie"  mayusculas/>
 					</div>
 
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<label for="observaciones">Observaciones</label>
-            			<textarea class="form-control" ng-model="observaciones" rows="3" mayusculas></textarea>
+            			<textarea class="form-control" ng-model="datos.observacionesbanco" rows="3" mayusculas></textarea>
 					</div>
 				</div>
 	            <br>
