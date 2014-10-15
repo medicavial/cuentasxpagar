@@ -1,10 +1,15 @@
 //inicializamos la aplicacion
-var app = angular.module('app', ['ui.bootstrap', 'ngCookies','ngRoute','ngAnimate','angularFileUpload']);
+var app = angular.module('app', ['ui.bootstrap', 'ngCookies','ngRoute','ngAnimate','angularFileUpload','datatables']);
 
 //configuramos nuestra aplicacion
 app.config(function($routeProvider){
 
     //Configuramos la ruta que queremos el html que le toca y que controlador usara
+    $routeProvider.when('/busqueda/provedores',{
+            templateUrl: 'views/busquedaProvedor.html',
+            controller : 'busquedaProvedorCtrl'
+    });
+
     $routeProvider.when('/home',{
             templateUrl: 'views/home.html',
             controller : 'homeCtrl'
@@ -13,6 +18,11 @@ app.config(function($routeProvider){
     $routeProvider.when('/login',{
             templateUrl: 'views/login.html',
             controller : 'loginCtrl'
+    });
+
+    $routeProvider.when('/provedor',{
+            templateUrl: 'views/provedor.html',
+            controller : 'provedorCtrl'
     });
     
     $routeProvider.otherwise({redirectTo:'/login'});
@@ -62,6 +72,9 @@ app.factory("sesion", function($cookies,$cookieStore,$location, $rootScope, $htt
 
                 if (data.respuesta) {
                     $rootScope.mensaje = data.respuesta;
+                    $rootScope.nocargando = true;
+                    $rootScope.cargando = false;
+
                 }else{
 
                     $rootScope.username = data[0].Usu_nombre;

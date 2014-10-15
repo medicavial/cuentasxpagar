@@ -5,11 +5,14 @@ app.controller('loginCtrl', function($scope, $rootScope, sesion) {
         $scope.user = '';
         $scope.psw = '';
         $rootScope.mensaje = '';
-        $rootScope.cerrar = true;
+        $rootScope.nocargando = true;
+        $rootScope.cargando = false;
     }
 
     $scope.login = function(){
 
+        $rootScope.nocargando = false;
+        $rootScope.cargando = true;
         $rootScope.mensaje = '';
         sesion.login($scope.user,$scope.psw);
     }

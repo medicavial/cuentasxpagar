@@ -1,0 +1,112 @@
+<div ng-init="inicio()">
+	<h1>Nuevo provedor</h1>
+	<div class="col-lg-12">
+        <div class="widget">
+            <div class="widget-title"><i class="glyphicon glyphicon-folder-open"></i> Datos del provedor</div>
+            <div class="widget-body">
+				<div class="row">
+					<div class="col-sm-3 col-md-3">
+						<label for="archivos">Tipo</label>
+            			<select class="form-control" id="area" ng-model="areaOp" ng-options="area.calve as area.nombre for area in areas" ng-change="altausuariosarea(areaOp)" required>
+							<option value="">Tipo Provedor</option>
+						</select>
+					</div>
+					<div class="col-sm-3 col-md-2">
+						<label for="archivos">Persona </label>
+						<br>
+						<label class="radio-inline">
+						  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" ng-model="datos.persona"> Fisica
+						</label>
+						<label class="radio-inline">
+						  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" ng-model="datos.persona"> Moral
+						</label>
+					</div>
+					<div class="col-sm-6 col-md-7">
+						<label for="archivos">Nombre</label>
+            			<input type="text" id="archivos" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3 col-md-3">
+						<label for="archivos">Nombre Corto</label>
+            			<input type="text" id="archivos" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+					</div>
+					<div class="col-sm-3 col-md-3">
+						<label for="rfc">RFC</label>
+            			<input type="text" id="rfc" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+					</div>
+					<div class="col-sm-3 col-md-3">
+						<label for="archivos">Correo</label>
+            			<input type="text" id="archivos" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+					</div>
+					<div class="col-sm-3 col-md-3">
+						<label for="archivos">Crédito(dias)</label>
+            			<input type="text" id="archivos" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<label for="observaciones">Observaciones</label>
+            			<textarea class="form-control" ng-model="observaciones" rows="3" mayusculas></textarea>
+					</div>
+				</div>
+				<fieldset>
+					<legend>Datos de la Cuenta</legend>
+				</fieldset>
+				<div class="row">
+					<div class="col-sm-4 col-md-3">
+						<label for="archivos">Banco</label>
+            			<select class="form-control" id="area" ng-model="areaOp" ng-options="area.calve as area.nombre for area in areas" ng-change="altausuariosarea(areaOp)" required>
+							<option value="">Selecciona banco</option>
+						</select>
+					</div>
+					<div class="col-sm-8 col-md-6">
+						<label for="beneficiario">Beneficiario</label>
+            			<input type="text" id="beneficiario" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3 col-md-3">
+						<label for="sucursal">Sucursal</label>
+            			<input type="text" id="sucursal" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+					</div>
+					<div class="col-sm-3 col-md-3">
+						<label for="cuenta">Cuenta</label>
+            			<input type="text" id="cuenta" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+					</div>
+					<div class="col-sm-3 col-md-3">
+						<label for="clabe">CLABE</label>
+            			<input type="text" id="clabe" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+					</div>
+					<div class="col-sm-3 col-md-3">
+						<label for="convenio">Convenio CIE</label>
+            			<input type="text" id="convenio" class="form-control"  ng-model="datos.nombre"  mayusculas/>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<label for="observaciones">Observaciones</label>
+            			<textarea class="form-control" ng-model="observaciones" rows="3" mayusculas></textarea>
+					</div>
+				</div>
+	            <br>
+	            <div ng-show="mensaje" class="alert alert-danger alertas" role="alert"> 
+					{{ mensaje }} 
+				</div>
+	            <hr>
+	            <div class="row">
+	                <div class="col-md-12 text-right">
+	                    <button class="btn btn-primary" ng-click="guardar()">Guardar</button>
+	                    <button class="btn btn-info" ng-click="inicio()">Limpiar</button>
+	                </div>
+	            </div>
+				
+				
+            </div>
+        </div>
+    </div>
+	
+	</div>
+</div>
